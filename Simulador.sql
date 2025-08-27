@@ -1,0 +1,20 @@
+USE Simulador
+GO
+
+CREATE TABLE Produtos(
+ProdutoID		INT IDENTITY(1,1) PRIMARY KEY,
+Nome			NVARCHAR(100) NOT NULL,
+TaxaAnual		DECIMAL(5,2) NOT NULL,
+PrazoMeses		INT NOT NULL
+);
+
+CREATE TABLE SimulacaoHistorico (
+SimulacaoID INT IDENTITY(1,1) PRIMARY KEY,
+ProdutoID INT NOT NULL,
+ValorEmprestimo DECIMAL(18,2) NOT NULL,
+PrazoMeses INT NOT NULL,
+TaxaMensal DECIMAL(10,6) NOT NULL,
+ParcelaMensal DECIMAL(18,2) NOT NULL,
+DataSimulacao DATETIME DEFAULT GETDATE(),
+FOREIGN KEY (ProdutoID) REFERENCES Produtos(ProdutoID)
+);
